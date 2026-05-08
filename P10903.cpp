@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
-//常规处理之后用前缀和计算每个区间的1的数量，将总数加上这些数量
+//常规处理之后用前缀和计算每个区间的1的数量，将0的总数加上这些数量
 int main(){
     int n,m;cin>>n>>m;
     vector<int> nums(n+2,0);
