@@ -1,19 +1,11 @@
 #include<bits/stdc++.h>
 using namespace std;
-typedef long long ll;
-ll ct_1(ll m){
-    ll ct = 0;
-    while(m>0){
-        if(m%2==1)ct++;
-        m/=2;
-    }
-    return ct;
-}
 int main(){
-    ll k,n,m;cin>>k>>n>>m;
-    m--;
-    ll ans = ct_1(m);
-    ans = ans%k;
-    cout<<ans<<endl;
+    vector<int> nums(10);
+    for(int i=0;i<10;i++)nums[i]=i;
+    int n;cin>>n;
+    auto it = lower_bound(nums.begin(),nums.end(),n);
+    int up_count = nums.end()-it;
+    cout<<up_count<<endl;
     return 0;
 }
