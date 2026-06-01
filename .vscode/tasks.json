@@ -7,14 +7,12 @@
             "command": "D:/tools/llvm-mingw-20251216-msvcrt-x86_64/bin/clang++.exe",
             "args": [
                 "-g",
-                "-fcolor-diagnostics",
-                "-fansi-escape-codes",
                 "${file}",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}.exe"
             ],
             "options": {
-                "cwd": "${fileDirname}"
+                "cwd": "${workspaceFolder}"
             },
             "problemMatcher": ["$gcc"],
             "group": {

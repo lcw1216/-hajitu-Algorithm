@@ -2,13 +2,13 @@
 using namespace std;
 int binary_search(vector<int> nums,int tar){
     int l=0,r=nums.size();
-    while(l<=r){
+    while(l<r){
         int mid = (l+r)/2;
         if(nums[mid]==tar)return mid;
         else if(nums[mid]<tar)l=mid+1;
-        else r=mid-1;
+        else r=mid;
     }
-    return 0;
+    return -1;
 }
 int main(){
     vector<int> nums(10);
