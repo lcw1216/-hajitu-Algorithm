@@ -1,34 +1,26 @@
-#include <iostream>
+#include<bits/stdc++.h>
 using namespace std;
-
-// 求 a 在模 m 下的逆元，要求 gcd(a, m) == 1
-// 若不存在逆元，返回 -1
-int mod_inv(int a, int m) {
-    int m0 = m, y = 0, x = 1;
-    if (m == 1) return 0;
-
-    while (a > 1) {
-        int q = a / m;
-        int t = m;
-        m = a % m, a = t;
-        t = y;
-        y = x - q * y;
-        x = t;
+typedef long long ll;
+const int mod = 1e9+7;//注意！！！使用题目给的模逆元
+//通过费马小定理计算模逆元（需要
+//原理 a作为除数，模逆元等于a^(mod-2)%mod
+//理由 计算 a 的 (mod-1) 次方，然后除以 mod，得到的余数一定等于 1。所以a的mod-2次方就是a作为除数的时的模逆元
+ll fp(ll a,ll b,ll mod) {
+    ll res = 1;
+    while (b>0) {
+        if (b%2==1) res=res*a%mod;   
+        a=a*a%mod;                  
+        b/=2;                    
     }
-    if (x < 0) x += m0;
-    return (a == 1) ? x : -1;
+    return res;
 }
-
-int main() {
-    int a;cin>>a;
-    int mod = 1e9 + 7;
-    int inv = mod_inv(a, mod);
-    if (inv != -1)
-        cout << inv << endl;                    // 333333336
-    else
-        cout << "No inverse" << endl;
-
-    // 验证：必须用 long long 防止乘法溢出
-    cout << (1LL * a * inv) % mod << endl;     // 1
+int main(){
+    ll a,b;
+    cin>>a>>b;
+    //b作为除数
+    ll invb = fp(b,mod-2,mod);// invb就是模逆元
+    //模逆元使用方法
+    //(A / B) % MOD = (A % MOD) * inv(B) % MOD
+    ll ans = (a%mod)*(invb)%mod;
     return 0;
 }

@@ -1,0 +1,32 @@
+# === 编译产物 ===
+*.exe
+*.o
+*.obj
+*.a
+*.lib
+*.dll
+*.so
+*.dylib
+
+# === IDE/编辑器配置 ===
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# === CPH (Competitive Programming Helper) ===
+.cph/
+
+# === 编译中间文件 ===
+*.out
+*.gch
+
+# === 可选的本地测试文件 ===
+test.cpp
+nowcoder.cpp
+
+# === 二进制/缓存 ===
+*.bin
+*.log

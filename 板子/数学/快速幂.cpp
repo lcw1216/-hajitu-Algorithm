@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int binpow(int a,int b) {
+int fp(int a,int b) {
     int res = 1;
     while (b>0) {
         if (b%2==1) res=res*a;   
@@ -12,7 +12,7 @@ int binpow(int a,int b) {
 }
 int main(){
     int a,b;cin>>a>>b;
-    int ans = binpow(a,b);
+    int ans = fp(a,b);
     cout<<ans<<endl;
     return 0;
 }
