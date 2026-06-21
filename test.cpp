@@ -1,25 +1,24 @@
 #include<bits/stdc++.h>
 using namespace std;
-
-//要求矩阵为排列，且每一列的最大公约数也为全排列
-int main(){
-    int n;cin>>n;
-    vector<vector<int>> ans(n);
-    for(int i=1;i<=n;i++)ans[i].push_back(i);
-    for(int i=n+1;i<=n*n;i++){
-        bool ip = false;
-        for(int j=2;j<n;i++){
-            if(ans[j].size()>=n)continue;
-            if(i%j==0){
-                ans.push_back(i);
-                ip=true;
-                break;
-            }
-        }
-        if(!ip)
+//结构体自定义
+struct student{
+    int id;
+    int score;
+};
+struct cmp{
+    bool operator()(const student& a,const student& b){
+        return a.score>b.score;
     }
-
+};
+int main(){
+    priority_queue<int>bpq;//最大堆，每次入队自动将最大值放在队头
+    priority_queue<int,vector<int>,greater<int>> mpq;//最小堆，和最大堆相反
+    for(int i=1;i<=10;i++){
+        bpq.push(i);
+        mpq.push(i);
+    }
+    while(!bpq.empty()){cout<<bpq.top()<<' ';bpq.pop();}
+    cout<<endl;
+    while(!mpq.empty()){cout<<mpq.top()<<' ';mpq.pop();}
+    return 0;
 }
-1 5 8
-2 4 6 8 
-3 6 9
