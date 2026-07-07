@@ -1,23 +1,49 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-const int mod = 998244353;
-typedef long long ll;
-ll fp(ll d,ll z){
-    ll ans = 1;
-    while(z>0){
-        if(z%2==1)ans=ans*d%mod;
-        d=d*d%mod;
-        z/=2;
-    }
-    return ans;
+using ll = long long;
+void solve()
+{
+    int n;
+	cin >> n;
+	vector<vector<int> >ans(n + 1);
+	vector<int>cnt(n + 1);
+	for (int i = 1; i <= n; i++)
+	{
+		cnt[i] = i;
+	}
+	int c = 0, tot = n * (n + 1) / 2;
+	int i = 1, j = n;
+	while (c <= tot)
+	{
+		if (cnt[j])
+		{
+			ans[i].push_back(j);
+			cnt[j]--;
+			c++;
+			i++;
+			if (i > n) i = 1;
+		}
+		else j--;
+	}
+	for (int k = 1; k <= n; k++)
+	{
+		int sz = ans[k].size();
+		for (int j = 0; j < sz; j++)
+		{
+			cout << ans[k][j] << " ";
+		}
+	}
 }
-int main(){
-    ll T;cin>>T;
-    while(T--){
-        ll n,k;cin>>n>>k;
-        // ll ans = fast_m((1+k)*k/2,n)-fast_m((1+k)*k/2,n-1);
-        ll ans = fp((fp(2, k) - 1 + mod) % mod, n);
-        cout<<ans<<endl;
-    }
-    return 0;
+int main()
+{
+	ios::sync_with_stdio(false);
+	cin.tie(0);
+	cout.tie(0);
+	int t = 1;
+	//cin >> t;
+	while (t--)
+    {
+		solve();
+	}
+	return 0;
 }
