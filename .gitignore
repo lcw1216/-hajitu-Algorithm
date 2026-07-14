@@ -9,6 +9,7 @@
 *.dylib
 
 # === IDE/编辑器配置 ===
+.claude/
 .vscode/
 .idea/
 *.swp
