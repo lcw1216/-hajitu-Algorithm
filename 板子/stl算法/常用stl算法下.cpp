@@ -28,5 +28,7 @@ int main(){
     vector<int> res(input.size());
     partial_sum(input.begin(),input.end(),res.begin());//partial_sum: 统计前缀和
     for(int i=0;i<(int)res.size();i++)cout<<res[i]<<' ';
+    int l=1,r=2;
+    int mx = ceil(l/r);//向上取整
     return 0;
 }
