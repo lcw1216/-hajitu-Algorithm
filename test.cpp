@@ -1,65 +1,35 @@
 #include<bits/stdc++.h>
 using namespace std;
-// 质因数分解
-vector<int> to_ys(int tar){
-    vector<int> ans;
-    for(int i=2;i*i<=tar;i++){
-        if(tar%i==0){
-            ans.push_back(i);
-            while(tar%i==0)tar/=i;
-        }
+typedef long long ll;
+//将一个整数列表分为两个集合使这两个集合的异或和的和最大，输出最大得分
+vector<ll> b(61,0);
+void insert(ll x){
+    for(ll i=60;i>=0;i--){
+        if(((x >> i)&1)==0)continue;
+        if(b[i]==0){b[i]=x;return ;}
+        x^=b[i];
     }
-    if(tar>0)ans.push_back(tar);
-    return ans;
 }
-//字符串打表
-string to_b(int x){
-    string ans;
-    while(x>0){
-        ans.push_back((char)(x%2+'0'));
-        x/=2;
+ll to_res(ll n,vector<ll> a){
+    fill(b.begin(),b.end(),0);
+    ll tol = 0;
+    for(ll i=0;i<n;i++)tol^=a[i];
+    ll mask = ((1LL << (60 + 1)) - 1)^tol;
+    for(ll i=0;i<n;i++)insert(a[i] & mask);
+    ll mx = 0;
+    for(ll i=60;i>=0;i--){
+        if((mx^b[i])>mx)mx^=b[i];
     }
-    reverse(ans.begin(),ans.end());
-    return ans;
-}
-vector<string> to_str(int len){
-    vector<string> ans;
-    for(int i=1;i<pow(2,len);i++){
-        string t = to_b(i);
-        if((int)t.length()<len){
-            reverse(t.begin(),t.end());
-            for(int j=0;j<len-t.length();i++)t.push_back('0');
-            reverse(t.begin(),t.end());
-        }
-        ans.push_back(t);
-    }
-    return ans;
-}
-//计算有多少个1 r中的数与n互质
-int to_ct(int r,int n){
-    vector<int> ys = to_ys(n);
-    int len = r,yss = ys.size();
-    vector<string> str(yss);
-    int slen = str.size();
-    for(int i=0;i<slen;i++){
-        int ct = 0,tp = 1;
-        for(int j=0;j<yss;j++)
-            if(str[i][j]=='1'){tp*=ys[j];ct++;}
-        if(ct%2==1)len-=tp;else len+=tp;
-    }
-    return len;
-}
-//计算有多少个l r中的数与n互质
-int to_res(int l,int r,int n){
-    int ans = to_ct(r,n);
-    if(l>1)ans-=to_ct(l,n);
-    return ans;
+    return tol+mx*2;
+
 }
 int main(){
-    int T;cin>>T;
+    ll T;cin>>T;
     while(T--){
-        int l,r,n;cin>>l>>r>>n;
-        int ans = to_res(l,r,n);
+        ll n;cin>>n;
+        vector<ll> a(n);
+        for(ll i=0;i<n;i++)cin>>a[i];
+        ll ans = to_res(n,a);
         cout<<ans<<endl;
     }
     return 0;
