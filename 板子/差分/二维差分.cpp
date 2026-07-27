@@ -4,14 +4,9 @@ int main(){
     int m,n;
     cin>>m>>n;
     vector<vector<int>> nums(m,vector<int>(n));
-    for(int i=0;i<m;i++){
-        for(int j=0;j<n;j++){
-            cin>>nums[i][j];
-        }
-    }
+    for(int i=0;i<m;i++) for(int j=0;j<n;j++) cin>>nums[i][j];            
     vector<vector<int>> diff(m+2,vector<int>(n+2,0));
-    int t;
-    cin>>t;
+    int t; cin>>t;
     while(t--){
         int x1,y1,x2,y2,c;
         cin>>x1>>y1>>x2>>y2>>c;
