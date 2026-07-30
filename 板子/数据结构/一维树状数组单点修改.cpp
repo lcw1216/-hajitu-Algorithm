@@ -19,6 +19,7 @@ void add(int x,int k){
     }
 }
 //在树状数组上二分查找第k大的树
+//只有对统计树状数组的出现频率才能二分，考虑到离散化，所有树状数组都可实现
 int kth(int k){
     int idx = 0;
     int bm = 1;
