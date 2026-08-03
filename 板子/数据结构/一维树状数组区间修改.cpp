@@ -10,7 +10,6 @@ void add(int k, int v) {
   int v1 = k * v;
   while (k <= n) {
     t1[k] += v, t2[k] += v1;
-    // 注意不能写成 t2[k] += k * v，因为 k 的值已经不是原数组的下标了
     k += lowbit(k);
   }
 }
@@ -25,7 +24,7 @@ int getsum(int *t, int k) {
 }
 
 void add1(int l, int r, int v) {
-  add(l, v), add(r + 1, -v);  // 将区间加差分为两个前缀加
+  add(l, v), add(r + 1, -v);  
 }
 
 long long getsum1(int l, int r) {
