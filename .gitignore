@@ -9,6 +9,7 @@
 *.dylib
 
 # === IDE/编辑器配置 ===
+.opencode/
 .claude/
 .vscode/
 .idea/
