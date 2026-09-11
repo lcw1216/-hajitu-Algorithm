@@ -1,30 +1,41 @@
 #include <bits/stdc++.h>
 using namespace std;
 using ll = long long;
-void solve(){
-    ll n;cin>>n;
-    vector<ll> a(n);
-    for(ll i=0;i<n;i++)cin>>a[i];
-    if(n<3){cout<<0<<endl;return;}
-    vector<ll> l(n),r(n);
-    for(ll i=0;i<n;i++){l[i] = a[i];r[i] = a[i];}
-    l[1] = max(0LL,l[1]-l[0]);r[n-2] = max(0LL,r[n-2]-r[n-1]);
-    for(ll i=2;i<n;i++)l[i] = max(0LL,l[i]-l[i-1]-l[i-2]);
-    for(ll i=n-3;i>=0;i--)r[i] = max(0LL,r[i]-r[i+1]-r[i+2]);
-    for(ll i=1;i<n;i++) l[i] = l[i]+l[i-1];
-    for(ll i=n-2;i>=0;i--) r[i] = r[i]+r[i+1];
-    ll minval = min(r[2],l[n-3]);
-    for(ll i=1;i<n-2;i++){
-        minval = min(minval,l[i-1]+r[i+2]);
+string to_b(int x){
+    string ans;
+    while(x>0){
+        ans.push_back((char)(x%2+'0'));
+        x/=2;
     }
-    cout<<minval<<endl;
+    return ans;
+}
+void solve(){
+      int x,y;cin>>x>>y;
+      if(x==0||y==0) {cout<<x+y<<' '<<0<<endl;return ;}
+      int maxval = x+y;
+      int ans = 0;
+      while(maxval>(x^y)){
+        int k = 1;
+        int xt = x,yt = y;
+        while(xt>0&&yt>0){
+            int a = xt%2,b = yt&2;
+            xt/=2;yt/=2;
+            if(a==1&&b==1){
+                x -= k;y -= k;
+                ans += k;
+                break;
+            }
+            k = k*2;
+        }
+      }
+      cout<<maxval<<' '<<ans<<endl;
 }
 int main(){
     ios::sync_with_stdio(false);
     cin.tie(0);
     cout.tie(0);
-    ll t = 1;
-    //cin >> t;
+    int t = 1;
+    cin >> t;
     while (t--){
         solve();
     }
