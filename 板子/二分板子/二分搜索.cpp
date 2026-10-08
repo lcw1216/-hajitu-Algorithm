@@ -1,14 +1,16 @@
 #include<bits/stdc++.h>
 using namespace std;
+bool check(){
+
+}
 int bs(vector<int> nums,int tar){
-    int l=0,r=nums.size();
+    int l,r;
     while(l<r){
-        int mid = (l+r)/2;
-        if(nums[mid]==tar)return mid;
-        else if(nums[mid]<tar)l=mid+1;
-        else r=mid;
+        int mid = (l+r+1)/2;
+        if(check())l=mid;
+        else r=mid-1;
     }
-    return -1;
+    return l;
 }
 int main(){
     vector<int> nums(10);
