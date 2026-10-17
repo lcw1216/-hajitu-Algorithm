@@ -29,7 +29,7 @@ int main(){
     cin.tie(0);
     cout.tie(0);
     int i,v,l,r;
-
+    cin>>i>>v>>l>>r;
     bit.update(i, v);           // 位置 i 增加 v（单点加）
     long long s = bit.pre(i);   // 前缀和 a[1]+...+a[i]
     long long t = bit.query(l, r);  // 区间和 a[l]+...+a[r]，l<=r

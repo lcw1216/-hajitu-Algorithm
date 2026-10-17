@@ -29,7 +29,7 @@ int main(){
     partial_sum(input.begin(),input.end(),res.begin());//partial_sum: 统计前缀和
     for(int i=0;i<(int)res.size();i++)cout<<res[i]<<' ';
     int l=1,r=2;
-    int mx = ceil(l/r);//向上取整
+    int mx = ceil((l+r-1)/r);//向上取整
     int p = 0;
     vector<int>b;
      multiset<int> ms(b.begin(), b.end());//查找删除都是logn
