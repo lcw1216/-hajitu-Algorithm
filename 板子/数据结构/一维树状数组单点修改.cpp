@@ -2,8 +2,7 @@
 using namespace std;
 using ll = long long;
 //构建可以计算前缀的树状数组
-ll n = 2e6+10;
-const ll inf = 1e18,MAXN = 2e6+10;
+const ll MAXN = 2e6+10;
 vector<ll> c(MAXN+1),b(MAXN+1);
 ll lowbit(ll x){return x & -x;}
 ll getsum(ll x,vector<ll>&c){
@@ -15,7 +14,7 @@ ll getsum(ll x,vector<ll>&c){
     return ans;
 }
 void add(ll x,ll k,vector<ll>&c){
-    while(x<=n){
+    while(x<=MAXN){
         c[x]+=k;
         x+=lowbit(x);
     }
@@ -23,10 +22,10 @@ void add(ll x,ll k,vector<ll>&c){
 ll kth(ll k,vector<ll>&c){
     ll idx = 0;
     ll bm = 1;
-    while((bm<<1)<=n)bm <<= 1;
+    while((bm<<1)<=MAXN)bm <<= 1;
     for(ll st=bm;st;st>>=1){
         ll nt = idx+st;
-        if(nt<=n&&c[nt]<k){
+        if(nt<=MAXN&&c[nt]<k){
             idx = nt;
             k -= c[nt];
         }
